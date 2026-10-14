@@ -1,4 +1,4 @@
--- PostgreSQL
+-- Proximusic : schema MySQL / MariaDB
 
 CREATE DATABASE database_db;
 
