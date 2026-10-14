@@ -11,5 +11,5 @@ INSERT INTO favorites (user_id, event_id) VALUES
     (1, 2);
 
 INSERT INTO comments (user_id, event_id, content) VALUES
-    (1, 1, 'Hâte d''y être !'),
+    (1, 1, 'Hâte de y être !'),
     (1, 2, 'Super idée, je viens.');
