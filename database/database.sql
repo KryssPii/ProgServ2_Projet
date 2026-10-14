@@ -1,5 +1,5 @@
 -- MariaDB : à lancer avec la base cible sélectionnée
-USE my_database
+USE my_database;
 
 DROP TABLE IF EXISTS comments, favorites, events, users;
  
