@@ -1,0 +1,14 @@
+:root {
+	--black: #000;
+	--white: #fff;
+	--grey: #d9d9d9;
+	--grey-line: #8b8b8b;
+	--font: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+	/* échelle de la maquette (largeur 1728) */
+	--fs-xs: clamp(0.8rem, 1.2vw, 1.15rem);
+	--fs-sm: clamp(0.9rem, 1.9vw, 1.6rem);
+	--fs-md: clamp(1rem, 2.5vw, 2.1rem);
+	--fs-lg: clamp(1.2rem, 2.8vw, 2.4rem);
+	--fs-xl: clamp(1.8rem, 3.7vw, 3.2rem);
+	--pad: clamp(1rem, 10vw, 170px);
+}

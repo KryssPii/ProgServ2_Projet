@@ -22,22 +22,29 @@ require __DIR__ . '/request.php';
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProgServ2 Course PHP Template</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+<header class="header">
+    <span class="lang">Langue : 🇫🇷</span>
 
-<body>
-    <h1>ProgServ2 Course PHP Template</h1>
-
-    <h2>Événements</h2>
-    <?php displayTable((new Event($pdo))->getAll()); ?>
-
-    <h2>Favoris de l'utilisateur 1</h2>
-    <?php displayTable((new Favorite($pdo))->getByUser(1)); ?>
-
-    <h2>Commentaires de l'événement 1</h2>
-    <?php displayTable((new Comment($pdo))->getByEvent(1)); ?>
-</body>
+    <a class="logo" href="/">Proximusic</a>
+    <a class="btn" href="/login">Se connecter</a>
+</header>
+<main class="container">
+    <section>
+        <h2>Nos découvertes de la semaine</h2>
+        <div class="discoveries">
+            <article class="discovery"><span class="tag">#popmélancolique</span>
+                <h3>Faustine</h3>
+            </article>
+        </div>
+    </section>
+    <section>
+        <h2>Événements à venir</h2>
+        <ul class="events">
+            <li class="event"><span class="event__name">Leo Middea - Jazz Club, Lausanne</span><time class="event__date">11.12.26</time></li>
+        </ul>
+    </section>
+</main>
 
 </html>
