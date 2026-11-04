@@ -13,3 +13,5 @@ INSERT INTO favorites (user_id, event_id) VALUES
 INSERT INTO comments (user_id, event_id, content) VALUES
     (1, 1, 'Hâte de y être !'),
     (1, 2, 'Super idée, je viens.');
+
+DELETE FROM users WHERE pseudo LIKE 'demo%';
