@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/Classes/Event.php';
 require_once __DIR__ . '/Classes/Favorite.php';
 require_once __DIR__ . '/Classes/Comment.php';
@@ -61,6 +60,7 @@ foreach ($commentManager->getByEvent(1) as $comment) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -83,7 +83,7 @@ foreach ($commentManager->getByEvent(1) as $comment) {
         </div>
     </section>
     <section>
-        <h2>Événements à venir</h2>
+        <h2 id="incomming">Événements à venir</h2>
         <ul class="events">
             <li class="event"><span class="event__name">Leo Middea - Jazz Club, Lausanne</span><time class="event__date">11.12.26</time></li>
         </ul>
