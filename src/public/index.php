@@ -1,21 +1,64 @@
 <?php
-const DB_HOST = 'mariadb';
-const DB_PORT = 3306;
-/*
-const DB_NAME = '6u2zv5_ProgServ2_proximusic';
-const DB_USER = '6u2zv5_ProxiAdm';
-*/
-const DB_NAME = 'my_database';
-const DB_USER = 'username';
-const DB_PASSWORD = 'password';
 
-$dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+require_once __DIR__ . '/Classes/Event.php';
+require_once __DIR__ . '/Classes/Favorite.php';
+require_once __DIR__ . '/Classes/Comment.php';
 
-$pdo = new PDO($dsn, DB_USER, DB_PASSWORD);
-$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+require_once __DIR__ . '/Interfaces/EventManagerInterface.php';
+require_once __DIR__ . '/Interfaces/FavoriteManagerInterface.php';
+require_once __DIR__ . '/Interfaces/CommentManagerInterface.php';
 
-require __DIR__ . '/class.php';
-require __DIR__ . '/request.php';
+require_once __DIR__ . '/Managers/EventManager.php';
+require_once __DIR__ . '/Managers/FavoriteManager.php';
+require_once __DIR__ . '/Managers/CommentManager.php';
+
+require_once __DIR__ . '/request.php';
+
+$pdo = new PDO(
+    'mysql:host=mariadb;port=3306;dbname=my_database;charset=utf8mb4',
+    'username',
+    'password'
+);
+
+$eventManager = new EventManager($pdo);
+$favoriteManager = new FavoriteManager($pdo);
+$commentManager = new CommentManager($pdo);
+
+$events = [];
+
+foreach ($eventManager->getAll() as $event) {
+    $events[] = [
+        'ID' => $event->getId(),
+        'Titre' => $event->getTitre(),
+        'Date' => $event->getDateEvenement(),
+        'Ville' => $event->getVille(),
+        'Lieu' => $event->getLieu()
+    ];
+}
+
+$favorites = [];
+
+foreach ($favoriteManager->getByUser(1) as $favorite) {
+    $event = $eventManager->getById($favorite->getIdEvent());
+
+    if ($event !== null) {
+        $favorites[] = [
+            'ID' => $event->getId(),
+            'Titre' => $event->getTitre(),
+            'Date' => $event->getDateEvenement(),
+            'Ville' => $event->getVille(),
+            'Lieu' => $event->getLieu()
+        ];
+    }
+}
+$comments = [];
+foreach ($commentManager->getByEvent(1) as $comment) {
+    $comments[] = [
+        'ID' => $comment->getId(),
+        'Utilisateur' => $comment->getIdUser(),
+        'Commentaire' => $comment->getContenu()
+    ];
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,21 +66,20 @@ require __DIR__ . '/request.php';
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProgServ2 Course PHP Template</title>
+    <title>Proximusic</title>
 </head>
 
 <body>
-    <h1>ProgServ2 Course PHP Template</h1>
+    <h1>Proximusic</h1>
 
     <h2>Événements</h2>
-    <?php displayTable((new Event($pdo))->getAll()); ?>
+    <?php displayTable($events); ?>
 
-    <h2>Favoris de l'utilisateur 1</h2>
-    <?php displayTable((new Favorite($pdo))->getByUser(1)); ?>
+    <h2>Favoris de l’utilisateur 1</h2>
+    <?php displayTable($favorites); ?>
 
-    <h2>Commentaires de l'événement 1</h2>
-    <?php displayTable((new Comment($pdo))->getByEvent(1)); ?>
+    <h2>Commentaires de l’événement 1</h2>
+    <?php displayTable($comments); ?>
 </body>
 
 </html>
