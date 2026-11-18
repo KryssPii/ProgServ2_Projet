@@ -1,7 +1,7 @@
 <?php
 
 class User {
-    private int $id;
+    private ?int $id;
     private string $pseudo;
     private string $email;
     private string $passwordHash;
@@ -24,7 +24,7 @@ class User {
         $this->bio = $bio;
     }
 
-    public function getId(): int {
+    public function getId(): ?int {
         return $this->id;
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/Classes/Event.php';
 require_once __DIR__ . '/Classes/Favorite.php';
 require_once __DIR__ . '/Classes/Comment.php';
@@ -61,25 +60,34 @@ foreach ($commentManager->getByEvent(1) as $comment) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Proximusic</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+<header class="header">
+    <span class="lang">Langue : 🇫🇷</span>
 
-<body>
-    <h1>Proximusic</h1>
-
-    <h2>Événements</h2>
-    <?php displayTable($events); ?>
-
-    <h2>Favoris de l’utilisateur 1</h2>
-    <?php displayTable($favorites); ?>
-
-    <h2>Commentaires de l’événement 1</h2>
-    <?php displayTable($comments); ?>
-</body>
+    <a class="logo" href="/">Proximusic</a>
+    <a class="btn" href="/login">Se connecter</a>
+</header>
+<main class="container">
+    <section>
+        <h2>Nos découvertes de la semaine</h2>
+        <div class="discoveries">
+            <article class="discovery"><span class="tag">#popmélancolique</span>
+                <h3>Faustine</h3>
+            </article>
+        </div>
+    </section>
+    <section>
+        <h2 id="incomming">Événements à venir</h2>
+        <ul class="events">
+            <li class="event"><span class="event__name">Leo Middea - Jazz Club, Lausanne</span><time class="event__date">11.12.26</time></li>
+        </ul>
+    </section>
+</main>
 
 </html>
